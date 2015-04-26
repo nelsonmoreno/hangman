@@ -1,0 +1,49 @@
+ <meta charset="utf-8">
+<div class="parent">
+	<div class="child">Round # {{user.games.round}}</div>
+	<div class="child">
+		<div>
+			<div class="jumbotron">
+				<h1>'Salva tu vida!'</h1>
+				<p class="lead">
+					Adivinando la palabra de la categoria {{selectedCategory}}<br />
+				</p>	
+				<p>
+					<a href="#" buttons="no" blur="submit" editable-text="user.name">{{user.name || "De clic aqu&iacute; y escriba su nombre para iniciar" }}</a>
+				</p>
+			</div>
+
+			<div class="jumbotron">
+				<canvas id="coinAnimation"></canvas>
+				<script src="scripts/sp.js"></script>
+			</div>
+			<div class="jumbotron">
+				<div class="row marketing">
+					<span class="glyphicon glyphicon-ok">Escribe aqu&iacute; una letra: <br/><br/></span> 
+					<input name="inputChar" ng-value="inputChar" ng-model="inputChar"
+						type="text" ng-keypress="keypress($event)"
+						ng-disabled="startDisabled"
+						style="text-align: center; height: 30px; font-size: 22pt; width: 32px">
+				</div>
+				<div class="chars">
+					<div ng-repeat="char in chars track by $index" ng-if="char.visible"
+						class="letter {{char.char}}">
+					</div>
+					<p>
+						<span class="glyphicon glyphicon-ok">{{gamemessage}}</span>
+					</p>
+					<br />
+				<p><h5>Categoría:
+				<select ng-model="selectedCategory" ng-change="changeCategory()">
+    				<option ng-repeat="categoria in categoriasKeys" value="{{categoria}}">{{categoria}}</option>
+				</select></h5>
+				</p>
+				<button ng-click="reset()" ng-disabled="startDisabled">Reiniciar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="child">
+		Score: {{user.score}} <br />
+	</div>
+</div>
